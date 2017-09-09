@@ -5,19 +5,16 @@
 package facturacion.pantallas;
 
 import Conversores.Numeros;
-import Fiscal.EpsonTicket;
 import facturacion.clientes.ClientesTango;
 
 import interfaceGraficas.Inicio;
 import interfaces.Modificable;
 import interfacesPrograma.Facturar;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,14 +22,11 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import objetos.Articulos;
 import objetos.Comprobantes;
-import objetos.Conecciones;
-import tablas.MiModeloTablaBuscarCliente;
 import tablas.MiModeloTablaFacturacion;
 
 
@@ -1032,7 +1026,7 @@ private void montrarMonto(){
     Double total=montoTotal;
     //Double total=montoTotal * cliT.getDescuento();
     //comp.setMontoTotal(total);
-    this.jLabel2.setText(String.valueOf(total));
+    this.jLabel2.setText(Numeros.ConvetirNumeroDosDigitos(total));
 }
 private void verificar(){
     int cantidad=this.jTable1.getRowCount();

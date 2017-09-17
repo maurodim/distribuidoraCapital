@@ -366,17 +366,18 @@ public class Impresora {
         //pagina.drawImage(imagen,123,20,174,93,null);
         pagina.setFont(fuente6);
         pagina.setColor(Color.black);
-        pagina.drawString("COMPROBANTE N° 00"+Inicio.deposito.getNumero()+"-000"+caja.getNumero(),40,130);
+        pagina.drawString("COMPROBANTE N° 00"+Inicio.deposito.getNumero()+"-000"+caja.getNumero(),40,30);
         pagina.setFont(fuente11);
-        pagina.drawString("REMITO INTERNO", 320,130);
+        pagina.drawString("REMITO INTERNO", 320,30);
         pagina.setFont(fuente);
-        pagina.drawString("FECHA :"+fec, 40,140);
+        pagina.drawString("FECHA :"+fec, 40,40);
         pagina.setFont(fuente6);
-        pagina.drawString("Deposito Origen :"+caja.getIdDeposito(),40,150);
+        pagina.drawString("Deposito Origen :"+caja.getIdDeposito(),40,50);
         //pagina.drawString("Deposito Origen :"+caja.getDepositoOrigen(),20,160);
         pagina.setFont(fuente);
-        pagina.drawString("HORA :"+hrs,320,140);
-        pagina.drawString("Usuario :"+Inicio.usuario.getNombre(),320,150);
+        pagina.drawString("HORA :"+hrs,320,40);
+        pagina.drawString("Usuario :"+Inicio.usuario.getNombre(),320,50);
+        pagina.drawLine(30, 60, 600,60);
         pagina.setFont(fuente6);
         //Double monto=caja.getMontoMovimiento();
         //pagina.drawString(" : $ "+monto,20,190);
@@ -384,14 +385,19 @@ public class Impresora {
         //pagina.drawString("RETIRO DE EFECTIVO ", 50,280);
         //formulario derecho
         pagina.setFont(fuente6);
-        pagina.drawString("ARTICULO", 40,190);
-        pagina.drawString("CANTIDAD", 260,190);
-        //pagina.drawString("COSTO", 330,190);
-        pagina.drawString("VENTA",410,190);
-        int columna=200;
+        pagina.drawString("COD.", 30,70);
+        pagina.drawString("ARTICULO", 90,70);
+        pagina.drawString("CANTIDAD", 370,70);
+        pagina.drawString("P. UNIT", 440,70);
+        pagina.drawString("P. TOTAL",510,70);
+        int columna=80;
+        
+        pagina.drawLine(30,columna, 600,columna);
+        columna=columna + 10;
         String cann="";
         String costo="";
         String venta="";
+        String unitario="";
         
         //articList=caja.getArticulos();
         int tamano=caja.getListadoDeArticulos().size();
@@ -400,26 +406,35 @@ public class Impresora {
         //itRem.remove();
 
         Iterator itRem1=caja.getListadoDeArticulos().listIterator();
-        pagina.setFont(fuente);
+        pagina.setFont(fuente8);
+        
         Double costoTotal=0.00;
         while(itRem1.hasNext()){
             Articulos articulo=(Articulos)itRem1.next();
-            pagina.drawString(articulo.getDescripcionArticulo(), 40,columna);
+            pagina.drawString(articulo.getCodigoAsignado(),30, columna);
+            pagina.drawString(articulo.getDescripcionArticulo(), 90,columna);
             cann=String.valueOf(articulo.getCantidad());
             costo=String.valueOf(articulo.getPrecioDeCosto());
-            venta=Numeros.ConvetirNumeroDosDigitos(articulo.getPrecioUnitario());
-            pagina.drawString(cann, 260,columna);
-            //pagina.drawString(costo,330,columna);
-            pagina.drawString(venta,410,columna);
+            unitario="$ "+Numeros.ConvetirNumeroDosDigitos(articulo.getPrecioUnitarioNeto());
+            venta="$ "+Numeros.ConvetirNumeroDosDigitos(articulo.getPrecioUnitario());
+            pagina.drawString(cann, 370,columna);
+            pagina.drawString(unitario,440,columna);
+            pagina.drawString(venta,510,columna);
             if(articulo.getPrecioDeCosto()!=null){
             costoTotal=costoTotal + (articulo.getPrecioDeCosto() * articulo.getCantidad());
             }
             columna=columna + 10;
         }
-        columna=columna + 20;
+        columna=columna + 10;
+        pagina.drawLine(30,columna, 600,columna);
+        columna=columna + 10;
         pagina.setFont(fuente6);
-        pagina.drawString("PRECIO TOTAL :"+Numeros.ConvetirNumeroDosDigitos(caja.getMontoTotal()),260,columna);
-        
+        pagina.drawString("PRECIO TOTAL : $"+Numeros.ConvetirNumeroDosDigitos(caja.getMontoTotal()),440,columna);
+        columna=columna + 10;
+        pagina.drawLine(30,columna, 600,columna);
+        columna=columna + 10;
+        pagina.setFont(fuente4);
+        pagina.drawString("Sr. Cliente: Por Favor CONTROLE su mercadería. Una vez retirado del local NO se aceptan reclamos", 40, columna);
         
         pagina.dispose();
         pj.end();

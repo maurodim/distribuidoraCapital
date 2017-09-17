@@ -238,6 +238,7 @@ public class CajaHistoricos extends javax.swing.JInternalFrame {
         int dd=fechaNueva.get(Calendar.DAY_OF_MONTH);
         String ddia = null;
         String mmes = null;
+        ddia=String.valueOf(dd);
         if(dd < 10)ddia="0"+dd;
         if(mes < 10)mmes="0"+mes;
         String fecha1=ano+"-"+mmes+"-"+ddia;

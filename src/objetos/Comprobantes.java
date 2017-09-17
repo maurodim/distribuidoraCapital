@@ -693,6 +693,7 @@ public class Comprobantes implements Facturar{
                 articulo.setCantidad(cant);
                 articulo.setPrecioUnitario(rs.getDouble("precioDeVenta"));
                 articulo.setPrecioServicio(rs.getDouble("precioServicio"));
+                articulo.setPrecioUnitarioNeto(rs.getDouble("precioDeVenta") / cant);
                 //total=rs.getDouble("total");
                 //articulo.setCantidad(cant);
                 //articulo.setPrecioUnitario(rs.getDouble("precioDeVenta"));

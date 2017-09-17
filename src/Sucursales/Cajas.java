@@ -1018,6 +1018,7 @@ public class Cajas extends Sucursales implements Cajeables{
         Cajas cajass=null;
         //Double saldoFinal=cajas.saldoInicial;
         String sql="select * from movimientoscaja where fecha like '"+fecha+"%'";
+        System.out.println(sql);
         Transaccionable tra=new ConeccionLocal();
         ResultSet rs=tra.leerConjuntoDeRegistros(sql);
         try {

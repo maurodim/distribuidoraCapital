@@ -404,6 +404,7 @@ public class Impresora {
         System.out.println("CANTIDAD DE ARTICULOS :"+caja.getListadoDeArticulos().size());
         
         //itRem.remove();
+        
 
         Iterator itRem1=caja.getListadoDeArticulos().listIterator();
         pagina.setFont(fuente8);

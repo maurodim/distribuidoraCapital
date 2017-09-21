@@ -687,7 +687,8 @@ public class Comprobantes implements Facturar{
             while(rs.next()){
                 articulo=new Articulos();
                 articulo.setDescripcionArticulo(rs.getString("descri"));//(Articulos) fact.cargarPorCodigoAsignado(rs.getInt("idArticulo"));
-                articulo.setCodigoAsignado(rs.getString("codA"));
+                articulo.setCodigoDeBarra(rs.getString("codA"));
+                articulo.setCodigoAsignado(rs.getString("idArticulo"));
                 cant=rs.getDouble("cantidad");
                 cant=cant * -1;
                 articulo.setCantidad(cant);

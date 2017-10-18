@@ -240,7 +240,11 @@ public class CajaHistoricos extends javax.swing.JInternalFrame {
         String mmes = null;
         ddia=String.valueOf(dd);
         if(dd < 10)ddia="0"+dd;
-        if(mes < 10)mmes="0"+mes;
+        if(mes < 10){
+            mmes="0"+mes;
+        }else{
+            mmes=String.valueOf(mes);
+        }
         String fecha1=ano+"-"+mmes+"-"+ddia;
        // ano=fechaHasta.get(Calendar.YEAR);
         //mes=fechaHasta.get(Calendar.MONTH);

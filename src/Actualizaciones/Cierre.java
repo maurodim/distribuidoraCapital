@@ -7,8 +7,6 @@ package Actualizaciones;
 
 import ObjetosBackUp.BackUp;
 import ObjetosBackUp.Backapear;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -7,6 +7,7 @@ package interfaceGraficas;
 import Actualizaciones.Actualiza;
 import Actualizaciones.Actualiza1;
 import Actualizaciones.BkDeConeccion;
+import Actualizaciones.Cierre;
 import Compras.Proveedores;
 import Depositos.Depositos;
 import Excel.InformeMensual;
@@ -767,6 +768,8 @@ public class Inicio extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //Backapear bb=new BackUp();
         //System.out.println(bb.GenerarArchivos());
+        Runnable cierre=new Cierre();
+        cierre.run();
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed

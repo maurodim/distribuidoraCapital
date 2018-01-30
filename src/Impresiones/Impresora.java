@@ -5,6 +5,7 @@ package Impresiones;
  * and open the template in the editor.
  */
 
+import Configuracion.Propiedades;
 import Conversores.Numeros;
 import Depositos.RemitosInternos;
 import Sucursales.Cajas;
@@ -46,6 +47,7 @@ public class Impresora {
     Font fuente9 = new Font("Arial", Font.BOLD, 5);
     Font fuente10 = new Font("Arial", Font.PLAIN, 6);
     Font fuente11=new Font("Arial",Font.BOLD,11);
+    Font fuente12 = new Font("Arial", Font.BOLD,9);
 	PrintJob pj;	
 	Graphics pagina;
 	
@@ -148,7 +150,7 @@ public class Impresora {
         pagina.setFont(fuente3);
         pagina.setColor(Color.black);
         pagina.drawString("FECHA :"+fec, 30,30);
-        pagina.drawString("SUCURSAL :"+Inicio.sucursal.getDescripcion(),170,30);
+        pagina.drawString("SUCURSAL :"+Propiedades.getNOMBRECOMERCIO(),170,30);
         pagina.drawString("CAJERO :"+Inicio.usuario.getNombre(),30,40);
         pagina.drawString("CAJA N°: "+Inicio.caja.getNumero(),170,40);
         pagina.drawString("HORA :"+hrs,250,40);
@@ -385,9 +387,9 @@ public class Impresora {
         //pagina.drawString("RETIRO DE EFECTIVO ", 50,280);
         //formulario derecho
         pagina.setFont(fuente6);
-        pagina.drawString("COD.", 30,70);
+        pagina.drawString("CANTIDAD", 30,70);
         pagina.drawString("ARTICULO", 90,70);
-        pagina.drawString("CANTIDAD", 370,70);
+        pagina.drawString("COD.", 370,70);
         pagina.drawString("P. UNIT", 440,70);
         pagina.drawString("P. TOTAL",510,70);
         int columna=80;
@@ -412,13 +414,16 @@ public class Impresora {
         Double costoTotal=0.00;
         while(itRem1.hasNext()){
             Articulos articulo=(Articulos)itRem1.next();
-            pagina.drawString(articulo.getCodigoAsignado(),30, columna);
+            //pagina.drawString("O", 25, columna);
+            pagina.drawOval(20,columna-5,5 ,5);
+            
+            pagina.drawString(articulo.getCodigoAsignado(),370, columna);
             pagina.drawString(articulo.getDescripcionArticulo(), 90,columna);
             cann=String.valueOf(articulo.getCantidad());
             costo=String.valueOf(articulo.getPrecioDeCosto());
             unitario="$ "+Numeros.ConvetirNumeroDosDigitos(articulo.getPrecioUnitarioNeto());
             venta="$ "+Numeros.ConvetirNumeroDosDigitos(articulo.getPrecioUnitario());
-            pagina.drawString(cann, 370,columna);
+            pagina.drawString(cann, 30,columna);
             pagina.drawString(unitario,440,columna);
             pagina.drawString(venta,510,columna);
             if(articulo.getPrecioDeCosto()!=null){
@@ -434,9 +439,12 @@ public class Impresora {
         columna=columna + 10;
         pagina.drawLine(30,columna, 600,columna);
         columna=columna + 10;
-        pagina.setFont(fuente4);
+        pagina.setFont(fuente12);
         pagina.drawString("Sr. Cliente: Por Favor CONTROLE su mercadería. Una vez retirado del local NO se aceptan reclamos", 40, columna);
-        
+        columna=columna + 10;
+        pagina.drawString(Propiedades.getNOMBRECOMERCIO(), 40,columna);
+        columna=columna + 10;
+        pagina.drawString("T.E.: 0342-155288090",40,columna);
         pagina.dispose();
         pj.end();
         }catch(Exception e)

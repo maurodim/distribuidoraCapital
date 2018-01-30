@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -430,8 +431,11 @@ public class ArqueoDeCaja extends javax.swing.JInternalFrame {
         
 
         Impresora impresion=new Impresora();
-        impresion.ImprimirCierreDeCaja(Cajas.getListadoCajas());
-        
+        try{
+            impresion.ImprimirCierreDeCaja(Cajas.getListadoCajas());
+        }catch(java.lang.NullPointerException ex){
+            JOptionPane.showMessageDialog(this,"IMPRESION CANCELADA");
+        }
         
         
         //this.dispose();

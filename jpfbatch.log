@@ -5621,3 +5621,79 @@ jssc.SerialPortException: Port name - /COM1; Method name - closePort(); Exceptio
 	at com.gt.jpfbatch.Main.EjecutarBatchFromFile(Main.java:255)
 	at com.gt.jpfbatch.Main.runAsStandAlone(Main.java:157)
 	at com.gt.jpfbatch.Main.main(Main.java:114)
+06 may 2018 15:22:09,739 289  [main] FATAL com.gt.ifepson.capa_fisica.serialPort.SerialPortConnector.getSerialPort(SerialPortConnector.java:66)  - Error abriendo puerto
+jssc.SerialPortException: Port name - /COM1; Method name - openPort(); Exception type - Port not found.
+	at jssc.SerialPort.openPort(SerialPort.java:167)
+	at com.gt.ifepson.capa_fisica.serialPort.SerialPortConnector.getSerialPort(SerialPortConnector.java:61)
+	at com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:379)
+	at com.gt.jpfbatch.Main.EjecutarBatch(Main.java:333)
+	at com.gt.jpfbatch.Main.EjecutarBatchFromFile(Main.java:255)
+	at com.gt.jpfbatch.Main.runAsStandAlone(Main.java:157)
+	at com.gt.jpfbatch.Main.main(Main.java:114)
+06 may 2018 15:22:09,743 293  [main] ERROR com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:399)  - 
+com.gt.ifepson.IFException: Puerto cerrado no puede abrirse
+	at com.gt.ifepson.IfCommand.ejecutar(IfCommand.java:521)
+	at com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:390)
+	at com.gt.jpfbatch.Main.EjecutarBatch(Main.java:333)
+	at com.gt.jpfbatch.Main.EjecutarBatchFromFile(Main.java:255)
+	at com.gt.jpfbatch.Main.runAsStandAlone(Main.java:157)
+	at com.gt.jpfbatch.Main.main(Main.java:114)
+Caused by: jssc.SerialPortException: Port name - /COM1; Method name - openPort(); Exception type - Port not found.
+	at jssc.SerialPort.openPort(SerialPort.java:167)
+	at com.gt.ifepson.IfCommand.ejecutar(IfCommand.java:513)
+	... 5 more
+06 may 2018 15:22:09,747 297  [main] ERROR com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:408)  - Error ejecutando CIERREZ el comando devolvio ERROR: error desconocido
+06 may 2018 15:22:09,747 297  [main] FATAL com.gt.ifepson.IfCommand.log(IfCommand.java:143)  - Comando CIERREZ --Realiza un cierre Z, no es necesario enviar ningun parametro-- con los siguientes parametros
+	100(XZ__TIPO_CIERRE) = Z
+	101(XZ__IMPRIMIR) = P
+ las respuestas es
+	PUERTO_SERIE Errores de puerto serie = Error en puerto serie al abrir
+
+06 may 2018 15:22:09,747 297  [main] FATAL com.gt.ifepson.fiscaldoc.FiscalDocument.log(FiscalDocument.java:460)  - 
+
+
+
+[C O M I E N Z O    E R R O R] 
+
+
+
+Error ejecutando batch con comandos
+Comando CIERREZ --Realiza un cierre Z, no es necesario enviar ningun parametro-- con los siguientes parametros
+	100(XZ__TIPO_CIERRE) = Z
+	101(XZ__IMPRIMIR) = P
+ las respuestas es
+	PUERTO_SERIE Errores de puerto serie = Error en puerto serie al abrir
+Las respuestas combinadas hasta el momento del error son
+	PUERTO_SERIE Errores de puerto serie = Error en puerto serie al abrir
+	OTROS_ERRORES Errores varios = Puerto cerrado no puede abrirse
+
+
+
+
+[F I N    E R R O R] 
+
+
+
+
+06 may 2018 15:22:09,749 299  [main] ERROR com.gt.ifepson.fiscaldoc.FiscalDocument.checkEnd(FiscalDocument.java:485)  - 
+com.gt.ifepson.IFException: Puerto cerrado no puede abrirse
+	at com.gt.ifepson.IfCommand.ejecutar(IfCommand.java:521)
+	at com.gt.ifepson.fiscaldoc.FiscalDocument.checkEnd(FiscalDocument.java:479)
+	at com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:424)
+	at com.gt.jpfbatch.Main.EjecutarBatch(Main.java:333)
+	at com.gt.jpfbatch.Main.EjecutarBatchFromFile(Main.java:255)
+	at com.gt.jpfbatch.Main.runAsStandAlone(Main.java:157)
+	at com.gt.jpfbatch.Main.main(Main.java:114)
+Caused by: jssc.SerialPortException: Port name - /COM1; Method name - openPort(); Exception type - Port not found.
+	at jssc.SerialPort.openPort(SerialPort.java:167)
+	at com.gt.ifepson.IfCommand.ejecutar(IfCommand.java:513)
+	... 6 more
+06 may 2018 15:22:09,750 300  [main] ERROR com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:431)  - Port name - /COM1; Method name - closePort(); Exception type - Port not opened.
+jssc.SerialPortException: Port name - /COM1; Method name - closePort(); Exception type - Port not opened.
+	at jssc.SerialPort.checkPortOpened(SerialPort.java:878)
+	at jssc.SerialPort.closePort(SerialPort.java:1088)
+	at com.gt.ifepson.fiscaldoc.FiscalDocument.run(FiscalDocument.java:429)
+	at com.gt.jpfbatch.Main.EjecutarBatch(Main.java:333)
+	at com.gt.jpfbatch.Main.EjecutarBatchFromFile(Main.java:255)
+	at com.gt.jpfbatch.Main.runAsStandAlone(Main.java:157)
+	at com.gt.jpfbatch.Main.main(Main.java:114)

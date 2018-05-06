@@ -35,6 +35,17 @@ public class Propiedades {
     static String CORREOCIERREDECAJA;
     static String CORREOCC;
     static String CORREOCCC;
+    static String CORREOSALIENTE;
+    static String PASS;
+
+    public static String getCORREOSALIENTE() {
+        return CORREOSALIENTE;
+    }
+
+    public static String getPASS() {
+        return PASS;
+    }
+    
 
     public static String getCORREOCIERREDECAJA() {
         return CORREOCIERREDECAJA;
@@ -128,6 +139,12 @@ public class Propiedades {
                             break;
                         case 11:
                             IMAGEN=linea.substring(7);
+                            break;
+                        case 12:
+                            CORREOSALIENTE=linea.substring(15);
+                            break;
+                        case 13:
+                            PASS=linea.substring(5);
                             break;
                         default:
                             break;

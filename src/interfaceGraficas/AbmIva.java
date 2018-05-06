@@ -7,21 +7,24 @@ package interfaceGraficas;
 
 import Excel.LeerIva;
 import Excel.pdfsJavaGenerador;
+import interfaces.Actualizable;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import objetos.Articulos;
 
 /**
  *
  * @author mauro
  */
 public class AbmIva extends javax.swing.JInternalFrame {
-
+    private int tipoArchivo;
     /**
      * Creates new form AbmIva
      */
-    public AbmIva() {
+    public AbmIva(int tipo) {
+        tipoArchivo=tipo;
         initComponents();
         this.jFileChooser1.setVisible(false);
     }
@@ -117,9 +120,15 @@ public class AbmIva extends javax.swing.JInternalFrame {
         String period=null;
         if(JOptionPane.showConfirmDialog(this,"Procesa el archivo seleccionado?","Aplicar Origen",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==1){
         }else{
-            LeerIva iva=new LeerIva();
-            period=JOptionPane.showInputDialog(this,"Ingrese periodo");
-            iva.leerArchivo(seleccionado,period);
+            //ACA DEBE LEER EL ARCHIVO O GENERARLO DE ACUERDO A LA OPCION DE TIPOARCHIVO
+            Actualizable actu=new Articulos();
+            if(tipoArchivo==1){
+            
+                actu.ExportarArticulos(seleccionado);
+            }else{
+                if(actu.ImportarArticulos(seleccionado)==1)JOptionPane.showMessageDialog(null,"PRECIOS ACUTALIZADOS");
+            }
+            
         }
         /*
         LeerExcel leer=new LeerExcel();
@@ -130,19 +139,7 @@ public class AbmIva extends javax.swing.JInternalFrame {
         }
         */
         
-        if(JOptionPane.showConfirmDialog(this,"Genera el pdf del periodo Procesado?","Generar PDF",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==1){
-            }else{
-            
-            if(period!=null){
-                
-            }else{
-                period=JOptionPane.showInputDialog(this,"Ingrese periodo");
-            }
-            pdfsJavaGenerador pd=new pdfsJavaGenerador();
-            pd.setPeriodo(period);
-            pd.run();
-               
-        }
+        
         this.jFileChooser1.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 

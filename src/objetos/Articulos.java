@@ -4,13 +4,20 @@
  */
 package objetos;
 
+import Configuracion.Propiedades;
 import Conversores.Numeros;
 import com.mysql.jdbc.CommunicationsException;
 import interfaceGraficas.Inicio;
+import interfaces.Actualizable;
 import interfaces.Editables;
 import interfaces.Modificable;
 import interfaces.Transaccionable;
 import interfacesPrograma.Facturar;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +35,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mauro
  */
-public class Articulos implements Facturar,Editables,Modificable{
+public class Articulos implements Facturar,Editables,Modificable,Actualizable{
     private String codigoDeBarra;
     private String codigoAsignado;
     private Integer rubro;
@@ -1160,6 +1167,62 @@ public class Articulos implements Facturar,Editables,Modificable{
         }
         
         return articulo;
+    }
+
+    @Override
+    public Integer ExportarArticulos(String archivo) {
+        int tama=archivo.length();
+        tama=tama-4;
+        String extension=archivo.substring(tama);
+        
+        String archivoDestino;
+        if(extension.equals(".sql")){
+            archivoDestino=archivo;
+        }else{
+            archivoDestino=archivo+".sql";
+        }
+        try {
+            String sente="C:/xampp/mysql/bin/mysqldump -h localhost -u "+Propiedades.getUSUARIO()+" -p"+Propiedades.getCLAVE()+" --no-create-db "+Propiedades.getBD()+" articulos";
+            Process p=Runtime.getRuntime().exec(sente);
+            InputStream is=p.getInputStream();
+            FileOutputStream fos=new FileOutputStream(archivoDestino);
+            byte[] buffer=new byte[1000];
+            int leido=is.read(buffer);
+            while(leido > 0){
+                fos.write(buffer,0,leido);
+                leido=is.read(buffer);
+            }
+            fos.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public Integer ImportarArticulos(String archivo) {
+        int veridi=0;
+        try {
+            String sql="truncate articulos";
+            tra.guardarRegistro(sql);
+            Process p=Runtime.getRuntime().exec("c:/xampp/mysql/bin/mysql -u "+Propiedades.getUSUARIO()+" -p"+Propiedades.getCLAVE()+" "+Propiedades.getBD());
+            System.out.println(Propiedades.getUSUARIO()+" -- "+Propiedades.getARCHIVOBK()+" -- "+archivo);
+            OutputStream os=p.getOutputStream();
+            FileInputStream fis=new FileInputStream(archivo);
+            byte[] buffer=new byte[1000];
+            int leido=fis.read(buffer);
+            while(leido >0){
+                os.write(buffer,0,leido);
+                leido=fis.read(buffer);
+            }
+            os.flush();
+            os.close();
+            fis.close();
+            veridi=1;
+        } catch (IOException ex) {
+            Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return veridi;
     }
     
     

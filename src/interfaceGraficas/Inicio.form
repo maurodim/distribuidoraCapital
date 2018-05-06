@@ -169,11 +169,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exportar Precios - A Archivo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem29ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem30">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Importar Precios - Desde Archivo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem30ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

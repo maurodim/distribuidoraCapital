@@ -358,9 +358,19 @@ public class Inicio extends javax.swing.JFrame {
         jMenu2.add(jMenuItem27);
 
         jMenuItem29.setText("Exportar Precios - A Archivo");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem29);
 
         jMenuItem30.setText("Importar Precios - Desde Archivo");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem30);
 
         jMenuBar1.add(jMenu2);
@@ -757,7 +767,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
 //        BkDeConeccion bkC=new BkDeConeccion();
         //bkC.limpiarBasesLocal();
-        AbmIva libro=new AbmIva();
+        AbmIva libro=new AbmIva(0);
         jDesktopPane1.add(libro);
         libro.setVisible(true);
         libro.pack();
@@ -798,6 +808,26 @@ public class Inicio extends javax.swing.JFrame {
         hist.setVisible(true);
         hist.toFront();
     }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        //        BkDeConeccion bkC=new BkDeConeccion();
+        //bkC.limpiarBasesLocal();
+        AbmIva libro=new AbmIva(1);
+        jDesktopPane1.add(libro);
+        libro.setVisible(true);
+        libro.pack();
+        libro.toFront();
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        //        BkDeConeccion bkC=new BkDeConeccion();
+        //bkC.limpiarBasesLocal();
+        AbmIva libro=new AbmIva(2);
+        jDesktopPane1.add(libro);
+        libro.setVisible(true);
+        libro.pack();
+        libro.toFront();
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,6 +20,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import objetos.ConeccionLocal;
 import objetos.Conecciones;
 
@@ -32,12 +34,14 @@ public class BbsGestion {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         /*
         ArrayList usuariosList=new ArrayList();
         Usuarios usuarios=new Usuarios();
         usuariosList=usuarios.listarUsuario();
         */
+        UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+        
         File folder=new File("C:\\Gestion");
         File archivos=new File("C:\\Informes");
         File bases=new File("C:\\Gestion\\DB");

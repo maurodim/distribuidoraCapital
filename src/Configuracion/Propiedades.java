@@ -150,7 +150,8 @@ public class Propiedades {
                             break;
                             
                     }
-                    
+                    //CORREOSALIENTE="bambusuite@bambusoft.com.ar";
+                      //      PASS="bambuSoft001";
                     System.out.println(renglon+" // "+SERVER+" // "+BD+" // "+USUARIO+" // "+CLAVE+" // "+CREADA+" // "+ARCHIVOBK+" // "+NOMBRECOMERCIO);
                     // if(tra.guardarRegistro(linea));
       }

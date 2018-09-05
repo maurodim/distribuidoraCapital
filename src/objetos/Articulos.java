@@ -6,7 +6,6 @@ package objetos;
 
 import Configuracion.Propiedades;
 import Conversores.Numeros;
-import com.mysql.jdbc.CommunicationsException;
 import interfaceGraficas.Inicio;
 import interfaces.Actualizable;
 import interfaces.Editables;
@@ -22,13 +21,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -69,6 +65,35 @@ public class Articulos implements Facturar,Editables,Modificable,Actualizable{
     private Integer idDeposito;
     private static Transaccionable tra=new ConeccionLocal();
     private static ResultSet rr;
+    private Double porcientoCosto;
+    private Double porcientoVenta;
+    private Double pocientoMayortista;
+
+    public Double getPocientoMayortista() {
+        return pocientoMayortista;
+    }
+
+    public void setPocientoMayortista(Double pocientoMayortista) {
+        this.pocientoMayortista = pocientoMayortista;
+    }
+    
+
+    public Double getPorcientoCosto() {
+        return porcientoCosto;
+    }
+
+    public void setPorcientoCosto(Double porcientoCosto) {
+        this.porcientoCosto = porcientoCosto;
+    }
+
+    public Double getPorcientoVenta() {
+        return porcientoVenta;
+    }
+
+    public void setPorcientoVenta(Double porcientoVenta) {
+        this.porcientoVenta = porcientoVenta;
+    }
+    
 
     public Integer getIdDeposito() {
         return idDeposito;
@@ -379,6 +404,31 @@ public class Articulos implements Facturar,Editables,Modificable,Actualizable{
             Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
         }
         //if(Inicio.coneccionRemota)BackapearMap();
+    }
+    public String ActualizarPorPorciento(ArrayList lst){
+        Iterator it=lst.listIterator();
+        Articulos articulo;
+        int cantidad=0;
+        String msj;
+        Transaccionable tra=new Conecciones();
+        String sql="";
+        int cc=0;
+        int vv=0;
+        String campos="";
+        while(it.hasNext()){
+            articulo=(Articulos) it.next();
+            campos="";
+            if(articulo.getPorcientoVenta() != null)campos=" precio=precio * "+articulo.getPorcientoVenta();
+            if(articulo.getPorcientoCosto() != null)campos+=" ,costo=costo * "+articulo.getPorcientoCosto();
+            if(articulo.getPocientoMayortista() != null)campos+=" ,servicio=servicio * "+articulo.getPocientoMayortista();
+            
+                sql="update articulos set"+campos+" where id="+articulo.getNumeroId();
+                tra.guardarRegistro(sql);
+                System.out.println(sql);
+                cantidad++;
+        }
+        msj="Se modificaron "+cantidad+" de Registros.Gracias";
+        return msj;
     }
     public static synchronized void RecargarMap(Integer funcion){
         
